@@ -26,5 +26,4 @@ The app supports:
 - quick EDA charts (label distribution, review length distribution, word cloud)
 - training a TF‑IDF + Logistic Regression model
 - single and batch predictions
-- export/import of the trained model as a `.pkl`
 

@@ -582,7 +582,6 @@ def main():
         "📊  Dashboard",
         "⚙️  Train Model",
         "🔮  Predict Sentiment",
-        "📦  Export / Import",
     ])
 
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -712,7 +711,7 @@ def main():
         model = st.session_state.get("model")
 
         if model is None:
-            st.warning("⚠️ No model loaded. Please train a model in the **⚙️ Train Model** tab first, or import a saved model from the **📦 Export / Import** tab.")
+            st.warning("⚠️ No model loaded. Please train a model in the **⚙️ Train Model** tab first.")
         else:
             st.markdown("""
                 <div class="info-box">
@@ -845,46 +844,7 @@ def main():
                             mime="text/csv",
                         )
 
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    # TAB 4 — EXPORT / IMPORT
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    with tabs[3]:
-        st.markdown('<div class="section-header">📦 Export / Import Model</div>', unsafe_allow_html=True)
 
-        st.markdown("""
-            <div class="info-box">
-                Save your trained model to a <code>.pkl</code> file so you can reuse it later without retraining.
-                Or import a previously saved model to start predicting immediately.
-            </div>
-        """, unsafe_allow_html=True)
-
-        exp1, exp2 = st.columns(2)
-
-        with exp1:
-            st.markdown("##### 📤 Export Model")
-            model = st.session_state.get("model")
-            if model is None:
-                st.info("No model in memory. Train one first.")
-            else:
-                payload = pickle.dumps(model)
-                st.download_button(
-                    "💾 Download Model (.pkl)",
-                    data=payload,
-                    file_name="sentiment_model.pkl",
-                    mime="application/octet-stream",
-                    use_container_width=True,
-                )
-
-        with exp2:
-            st.markdown("##### 📥 Import Model")
-            imported = st.file_uploader("Upload a model .pkl", type=["pkl"], key="import_model")
-            if imported is not None:
-                try:
-                    loaded = pickle.loads(imported.read())
-                    st.session_state["model"] = loaded
-                    st.success("✅ Model imported successfully! Head to the **🔮 Predict** tab.")
-                except Exception as e:
-                    st.error(f"Failed to load model: {e}")
 
     # ── Footer ──
     st.markdown("---")
