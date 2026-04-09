@@ -787,64 +787,6 @@ def main():
 
                         st.markdown("<br>", unsafe_allow_html=True)
 
-            # ── Batch prediction ──
-            st.markdown("---")
-            st.markdown("##### 📁 Batch Prediction")
-            batch_upload = st.file_uploader(
-                "Upload a CSV file with a `content` column for batch prediction",
-                type=["csv"],
-                key="batch_csv",
-            )
-            if batch_upload is not None:
-                batch_df = pd.read_csv(batch_upload)
-                if "content" not in batch_df.columns:
-                    st.error("CSV must have a `content` column.")
-                else:
-                    if st.button("🚀 Run Batch Prediction"):
-                        texts = batch_df["content"].astype(str).tolist()
-                        preds = model.predict(texts)
-                        probas = model.predict_proba(texts)
-
-                        out = batch_df.copy()
-                        out["predicted_sentiment"] = preds
-
-                        for i, label in enumerate(model.classes_):
-                            out[f"prob_{label}"] = probas[:, i]
-
-                        st.dataframe(out.head(100), use_container_width=True, height=400)
-
-                        # Summary chart
-                        batch_counts = pd.Series(preds).value_counts()
-                        colors_batch = [SENTIMENT_COLORS.get(s, "#888") for s in batch_counts.index]
-                        fig_batch = go.Figure(data=[go.Bar(
-                            x=batch_counts.index,
-                            y=batch_counts.values,
-                            marker_color=colors_batch,
-                            text=batch_counts.values,
-                            textposition='outside',
-                            textfont=dict(color="white", family="Inter"),
-                        )])
-                        fig_batch.update_layout(
-                            paper_bgcolor='rgba(0,0,0,0)',
-                            plot_bgcolor='rgba(0,0,0,0)',
-                            xaxis=dict(color='rgba(255,255,255,0.7)'),
-                            yaxis=dict(color='rgba(255,255,255,0.7)', showgrid=True, gridcolor='rgba(255,255,255,0.05)'),
-                            margin=dict(t=30, b=40, l=50, r=20),
-                            height=300,
-                        )
-                        st.plotly_chart(fig_batch, use_container_width=True)
-
-                        # Download
-                        buf = io.StringIO()
-                        out.to_csv(buf, index=False)
-                        st.download_button(
-                            "📥 Download Predictions CSV",
-                            data=buf.getvalue().encode("utf-8"),
-                            file_name="sentiment_predictions.csv",
-                            mime="text/csv",
-                        )
-
-
 
     # ── Footer ──
     st.markdown("---")
