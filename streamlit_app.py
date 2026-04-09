@@ -231,7 +231,17 @@ def _load_nltk_stopwords() -> set[str]:
         _ = stopwords.words("english")
     except LookupError:
         nltk.download("stopwords", quiet=True)
-    return set(stopwords.words("english"))
+    
+    sw = set(stopwords.words("english"))
+    
+    # Remove crucial negations so sentiment meaning isn't lost
+    negations = {"not", "no", "nor", "none", "don", "don't", "aren", "aren't", "isn", "isn't", 
+                 "wasn", "wasn't", "weren", "weren't", "hasn", "hasn't", "haven", "haven't", "hadn", "hadn't",
+                 "doesn", "doesn't", "didn", "didn't", "shouldn", "shouldn't", "wouldn", "wouldn't", "couldn", "couldn't",
+                 "won", "won't", "can", "can't", "cannot", "mightn", "mightn't", "mustn", "mustn't", "needn", "needn't", "shan", "shan't",
+                 "against"}
+                 
+    return sw - negations
 
 
 STOPWORDS = _load_nltk_stopwords()
