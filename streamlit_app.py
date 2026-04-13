@@ -289,6 +289,7 @@ class TrainResult:
     labels: list
     report: str
 
+#Logistic Regression
 
 def build_pipeline(max_features: int, ngram_max: int, c: float) -> Pipeline:
     return Pipeline(
