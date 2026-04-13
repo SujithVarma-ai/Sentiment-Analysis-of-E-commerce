@@ -1,29 +1,31 @@
-# SPL Project (Streamlit)
+# 🛒 E-Commerce Sentiment Analyzer
 
-This project converts the original notebook-style script (`special_project.py`) into a runnable Streamlit app.
+A Streamlit-based web application that performs **sentiment analysis on e-commerce reviews** using NLP techniques.
 
-## Setup
+It classifies text into:
+- 😊 Positive
+- 😐 Neutral
+- 😡 Negative
 
-```bash
-pip install -r requirements.txt
-```
+---
 
-## Run
+## ✨ Features
 
-```bash
-streamlit run streamlit_app.py
-```
+- 📊 Predict sentiment from user input text
+- 📁 Upload CSV files for analysis
+- 📈 Visualize probability distribution
+- ⚡ Fast and interactive UI with Streamlit
+- 🧠 ML model using TF-IDF + Logistic Regression
 
-## Data format
+---
 
-Upload a dataset containing:
+## 🛠️ Tech Stack
 
-- a text column (commonly `content`)
-- a label column (commonly `score`, e.g. 1–5)
+- Python
+- Streamlit
+- Scikit-learn
+- Pandas
+- NumPy
+- Matplotlib
 
-The app supports:
-
-- quick EDA charts (label distribution, review length distribution, word cloud)
-- training a TF‑IDF + Logistic Regression model
-- single predictions
-
+---
