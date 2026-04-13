@@ -12,7 +12,6 @@ It classifies text into:
 ## ✨ Features
 
 - 📊 Predict sentiment from user input text
-- 📁 Upload CSV files for analysis
 - 📈 Visualize probability distribution
 - ⚡ Fast and interactive UI with Streamlit
 - 🧠 ML model using TF-IDF + Logistic Regression
