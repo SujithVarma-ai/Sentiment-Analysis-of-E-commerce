@@ -271,9 +271,8 @@ def map_score_to_sentiment(score):
 
 # ─── LOAD DATA ────────────────────────────────────────────────────────────────
 @st.cache_data(show_spinner=False)
-def load_dataset() -> pd.DataFrame:
-    url = "https://raw.githubusercontent.com/SujithVarma-ai/Sentiment-Analysis-of-E-commerce/main/amazon_reviews.csv"
-    df = pd.read_csv(url)
+def load_dataset(path_or_url: str) -> pd.DataFrame:
+    df = pd.read_csv(path_or_url)
 
     df = df.dropna(subset=["content", "score"])
     df["content"] = df["content"].astype(str)
