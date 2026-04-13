@@ -19,7 +19,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 
 # ─── CONSTANTS ────────────────────────────────────────────────────────────────
 APP_TITLE = "🛒 E-Commerce Sentiment Analyzer"
-DATASET_PATH = r"c:\Users\nraja\Downloads\SPL project\amazon_reviews.csv"
+DATASET_PATH = "amazon_reviews.csv"
 
 SENTIMENT_COLORS = {
     "Positive": "#00C851",
