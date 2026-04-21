@@ -7,16 +7,47 @@ https://sentiment-analysis-of-e-commerce-kfkffkigksxczzrnuq5qkv.streamlit.app/
 
 ## 📌 Overview
 
-A Machine Learning web app that predicts whether an e-commerce review is **Positive or Negative** using NLP techniques.
+This project is an end-to-end **NLP-based sentiment analysis system** that classifies e-commerce reviews as **Positive or Negative** using a trained Machine Learning model.
+It includes model training, preprocessing, and a deployed interactive web application.
 
 ---
 
-## 🎯 Features
+## 🎯 Key Features
 
 * Real-time sentiment prediction
-* Logistic Regression model
-* TF-IDF vectorization
-* Streamlit-based interactive UI
+* Clean and simple Streamlit UI
+* Pre-trained ML model for fast inference
+* Text preprocessing pipeline
+* Lightweight and deployable
+
+---
+
+## 🧠 Model Details
+
+* Algorithm: Logistic Regression
+* Vectorization: TF-IDF
+* Input: Raw text review
+* Output: Positive / Negative label
+
+---
+
+## ⚙️ How It Works
+
+1. User enters a review
+2. Text is cleaned and processed
+3. TF-IDF converts text → numerical features
+4. Model predicts sentiment
+5. Result displayed instantly
+
+---
+
+## 📊 Example
+
+Input:
+"This product is really good and worth the price"
+
+Output:
+Positive 😊
 
 ---
 
@@ -34,12 +65,12 @@ A Machine Learning web app that predicts whether an e-commerce review is **Posit
 
 Sentiment-Analysis-of-E-commerce/
 │
-├── streamlit_app.py
-├── logistic_model.pkl
-├── tfidf_vectorizer.pkl
-├── special_project.py
-├── data/
-├── requirements.txt
+├── streamlit_app.py          # Main app
+├── logistic_model.pkl        # Trained model
+├── tfidf_vectorizer.pkl      # Vectorizer
+├── special_project.py        # Training script
+├── data/                     # Dataset
+├── requirements.txt          # Dependencies
 └── README.md
 
 ---
@@ -50,6 +81,29 @@ git clone https://github.com/SujithVarma-ai/Sentiment-Analysis-of-E-commerce.git
 cd Sentiment-Analysis-of-E-commerce
 pip install -r requirements.txt
 streamlit run streamlit_app.py
+
+---
+
+## 🚀 Deployment
+
+Deployed using Streamlit Community Cloud for quick and accessible sharing.
+
+---
+
+## ⚠️ Limitations
+
+* Only supports English text
+* Binary classification only
+* Performance depends on dataset quality
+
+---
+
+## 🔮 Future Improvements
+
+* Add Neutral sentiment class
+* Use advanced models (BERT / LSTM)
+* Improve UI/UX
+* Add batch prediction (CSV upload)
 
 ---
 
