@@ -25,7 +25,7 @@ from nltk.corpus import stopwords
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-!pip install xgboost
+pip install xgboost
 
 nltk.download('stopwords')
 STOPWORDS = set(stopwords.words('english'))
