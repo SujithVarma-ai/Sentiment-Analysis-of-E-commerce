@@ -2,6 +2,15 @@ import io
 import os
 import re
 import pickle
+
+@st.cache_resource
+def load_model():
+    model = pickle.load(open("logistic_model.pkl", "rb"))
+    vectorizer = pickle.load(open("tfidf_vectorizer.pkl", "rb"))
+    return model, vectorizer
+
+model, vectorizer = load_model()
+
 from dataclasses import dataclass
 from typing import Optional
 
@@ -19,7 +28,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 
 # ─── CONSTANTS ────────────────────────────────────────────────────────────────
 APP_TITLE = "🛒 E-Commerce Sentiment Analyzer"
-DATASET_PATH = "amazon_reviews.csv"
+DATASET_PATH = "data/amazon_reviews.csv"
 
 SENTIMENT_COLORS = {
     "Positive": "#00C851",
@@ -272,7 +281,7 @@ def map_score_to_sentiment(score):
 # ─── LOAD DATA ────────────────────────────────────────────────────────────────
 @st.cache_data(show_spinner=False)
 def load_dataset(path_or_url: str) -> pd.DataFrame:
-    df = pd.read_csv(path_or_url)
+    df = pd.read_csv("data/amazon_reviews.csv")
 
     df = df.dropna(subset=["content", "score"])
     df["content"] = df["content"].astype(str)
